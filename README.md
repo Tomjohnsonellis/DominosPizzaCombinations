@@ -4,9 +4,9 @@ A colleague at the Domino's store I work at recently tried to work out how many 
 ```
 (58! / 21! (58-21)! ) * 5
 ```
-
+---
 His reasoning being that we offer 29 different toppings, each of which can be a double portion if requested (29 * 2 = 58)
-<br>His result:
+<br>His result:<br>
 ![Wolfram Alpha screenshot](img/colleaguesguess.PNG)
 [(Thanks Wolfram)](https://www.wolframalpha.com/input?i=%2858%21%2F%2821%21%2858-21%29%21%29%29*5)
 ---
