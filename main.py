@@ -144,7 +144,7 @@ def count_topping_points(toppings_combo, points_target):
         # print(topping_dict[topping])
         points_total += topping_dict[topping]
 
-    print("Points total: ", points_total)
+    # print("Points total: ", points_total)
     if points_total == points_target:
         return True
     else:
@@ -154,19 +154,58 @@ def count_topping_points(toppings_combo, points_target):
 if __name__ == '__main__':
     sauce_dict, cheese_dict = setup_sauces_and_cheeses()
     topping_dict = setup_toppings_dict()
-    print(sauce_dict)
-    print(cheese_dict)
-    print(topping_dict)
+    # print(sauce_dict)
+    # print(cheese_dict)
+    # print(topping_dict)
     # Let's see how many pizzas with either a cheese or a sauce we can make
-    boring_pizzas = find_sauce_or_cheese_only(sauce_dict, cheese_dict)
-    print(boring_pizzas)
-    print(len(boring_pizzas))
-    print(list(topping_dict.items())[1][1])
-    topping_combos = generate_possible_toppings(8)
-    some_valid_combos = validate_combos(topping_combos, 8)
-    print(some_valid_combos)
-    print(type(some_valid_combos))
+    # boring_pizzas = find_sauce_or_cheese_only(sauce_dict, cheese_dict)
+    # print(boring_pizzas)
+    # print(len(boring_pizzas))
+    # print(list(topping_dict.items())[1][1])
+    # topping_combos = generate_possible_toppings(8)
+    # some_valid_combos = validate_combos(topping_combos, 8)
+    # print(some_valid_combos)
+    # print(type(some_valid_combos))
+    # print(len(some_valid_combos))
 
     # Okay, we can now crunch the numbers on every possible valid combination of each length
     # At most, there could be 8 single toppings and a sauce OR cheese
-    # As processer time is cheaper than human time, I'll just find every valid combination for each points total
+    # As processor time is cheaper than human time, I'll just find every valid combination for each points total
+    total_pizza_combinations = 0
+
+    boring_pizzas = find_sauce_or_cheese_only(sauce_dict, cheese_dict)
+    print("Boring Pizzas:" ,len(boring_pizzas))
+
+    # Next is possible sauce and cheese combinations and their respective point values
+    sauce_and_cheese_combos = []
+    for sauce in sauce_dict:
+        for cheese in cheese_dict:
+            # print("---")
+            # print(sauce, cheese)
+            # print(sauce_dict[sauce] + cheese_dict[cheese])
+            sauce_and_cheese_combos.append([sauce, cheese, sauce_dict[sauce] + cheese_dict[cheese]])
+    # The NO SAUCE NO CHEESE pizza is invalid
+    sauce_and_cheese_combos.remove(sauce_and_cheese_combos[0])
+    print(sauce_and_cheese_combos[0])
+    print("Sauce/Cheese Combos: ", len(sauce_and_cheese_combos))
+    print("Total so far: ", abs(len(boring_pizzas) - len(sauce_and_cheese_combos)))
+    # As shown in the readme, there are 11 different bases that can be used in a Domino's order
+    pizza_bases = 11
+
+    combo_counts = []
+    # This takes a LONG time to process!
+    for i in range(1,9):
+        print(i)
+        topping_combos = generate_possible_toppings(i)
+        valid_combos = validate_combos(topping_combos,i)
+        total_pizza_combinations += len(valid_combos)
+        print("Running Total: ", total_pizza_combinations)
+        combo_counts.append([i,len(valid_combos)])
+        print(combo_counts)
+
+    # Now that we have every possible valid combination and their point counts, we can do some summation
+    # Each pizza can have a maximum of 9 points, so we need to sum all the combinations up to that amount
+    # E.g. A pizza with 4 points spent on sauce/cheese can have 0,1,2,3,4,5 points spent on toppings
+
+    # For the final calculation
+    #pizza_bases * total_possible_toppings = result
