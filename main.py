@@ -171,7 +171,6 @@ if __name__ == '__main__':
     # Okay, we can now crunch the numbers on every possible valid combination of each length
     # At most, there could be 8 single toppings and a sauce OR cheese
     # As processor time is cheaper than human time, I'll just find every valid combination for each points total
-    total_pizza_combinations = 0
 
     boring_pizzas = find_sauce_or_cheese_only(sauce_dict, cheese_dict)
     print("Boring Pizzas:" ,len(boring_pizzas))
@@ -186,26 +185,81 @@ if __name__ == '__main__':
             sauce_and_cheese_combos.append([sauce, cheese, sauce_dict[sauce] + cheese_dict[cheese]])
     # The NO SAUCE NO CHEESE pizza is invalid
     sauce_and_cheese_combos.remove(sauce_and_cheese_combos[0])
-    print(sauce_and_cheese_combos[0])
+    print(sauce_and_cheese_combos)
     print("Sauce/Cheese Combos: ", len(sauce_and_cheese_combos))
     print("Total so far: ", abs(len(boring_pizzas) - len(sauce_and_cheese_combos)))
     # As shown in the readme, there are 11 different bases that can be used in a Domino's order
     pizza_bases = 11
 
-    combo_counts = []
     # This takes a LONG time to process!
-    for i in range(1,9):
-        print(i)
-        topping_combos = generate_possible_toppings(i)
-        valid_combos = validate_combos(topping_combos,i)
-        total_pizza_combinations += len(valid_combos)
-        print("Running Total: ", total_pizza_combinations)
-        combo_counts.append([i,len(valid_combos)])
-        print(combo_counts)
+    # total_pizza_combinations = 0
+    # combo_counts = []
+    # for i in range(1,9):
+    #     print(i)
+    #     topping_combos = generate_possible_toppings(i)
+    #     valid_combos = validate_combos(topping_combos,i)
+    #     total_pizza_combinations += len(valid_combos)
+    #     print("Running Total: ", total_pizza_combinations)
+    #     combo_counts.append([i,len(valid_combos)])
+    #     print(combo_counts)
+        #
+        # Running
+        # Total: 24
+        # [[1, 24]]
+        # 2
+        # Running
+        # Total: 300
+        # [[1, 24], [2, 276]]
+        # 3
+        # Running
+        # Total: 2324
+        # [[1, 24], [2, 276], [3, 2024]]
+        # 4
+        # Running
+        # Total: 12950
+        # [[1, 24], [2, 276], [3, 2024], [4, 10626]]
+        # 5
+        # Running
+        # Total: 55454
+        # [[1, 24], [2, 276], [3, 2024], [4, 10626], [5, 42504]]
+        # 6
+        # Running
+        # Total: 190050
+        # [[1, 24], [2, 276], [3, 2024], [4, 10626], [5, 42504], [6, 134596]]
+        # 7
+        # Running
+        # Total: 536154
+        # [[1, 24], [2, 276], [3, 2024], [4, 10626], [5, 42504], [6, 134596], [7, 346104]]
+        # 8
+        # Running
+        # Total: 1271625
+        # [[1, 24], [2, 276], [3, 2024], [4, 10626], [5, 42504], [6, 134596], [7, 346104], [8, 735471]]
 
+    # As there's no need to recalculate this number now that we have it, I'm going to store it
+    points_and_toppings = [[1, 24], [2, 276], [3, 2024], [4, 10626], [5, 42504], [6, 134596], [7, 346104], [8, 735471]]
     # Now that we have every possible valid combination and their point counts, we can do some summation
     # Each pizza can have a maximum of 9 points, so we need to sum all the combinations up to that amount
     # E.g. A pizza with 4 points spent on sauce/cheese can have 0,1,2,3,4,5 points spent on toppings
 
+    for sauce_cheese_combo in sauce_and_cheese_combos:
+        # print(sauce_cheese_combo)
+        combo_sum = 0
+        # Sum all the possible toppings combinations that a pizza could fit given the sauce/cheese
+        for i in range(9 - sauce_cheese_combo[2]):
+            # print(i)
+            combo_sum += points_and_toppings[i][1]
+
+        sauce_cheese_combo.append(combo_sum)
+
+    # print("---")
+    # print(sauce_and_cheese_combos)
+    possible_pizzas_per_base = 0
+    for results in sauce_and_cheese_combos:
+        possible_pizzas_per_base += results[3]
+
+    print(possible_pizzas_per_base)
     # For the final calculation
     #pizza_bases * total_possible_toppings = result
+    print("-----")
+    print("After all that, we have...")
+    print(pizza_bases * possible_pizzas_per_base, " possible pizzas!")
