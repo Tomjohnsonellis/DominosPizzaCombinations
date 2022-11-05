@@ -4,15 +4,13 @@ A colleague at the Domino's store I work at recently tried to work out how many 
 ```
 (58! / 21! (58-21)! ) * 5
 ```
----
-His reasoning being that we offer 29 different toppings, each of which can be a double portion if requested (29 * 2 = 58)
-<br>His result:<br>
+##### His reasoning being that we offer 29 different toppings, each of which can be a double portion if requested (29 * 2 = 58)
+##### His result:
+
 ![Wolfram Alpha screenshot](img/colleaguesguess.PNG)
-[(Thanks Wolfram)](https://www.wolframalpha.com/input?i=%2858%21%2F%2821%21%2858-21%29%21%29%29*5)
+##### [(Thanks Wolfram)](https://www.wolframalpha.com/input?i=%2858%21%2F%2821%21%2858-21%29%21%29%29*5)
 ---
-Domino's wall art claims that there are "Gazillions of combinations", the 
-[Merriam-Webster dictionary](https://www.merriam-webster.com/dictionary/gazillion)
-defines that as "A huge unspecified number, so this calculation could be in the right ballpark.
+##### Domino's wall art claims that there are "Gazillions of combinations", the [Merriam-Webster dictionary](https://www.merriam-webster.com/dictionary/gazillion) defines that as "A huge unspecified number, so this calculation could be in the right ballpark.
 ---
 There are however some constraints on ordering pizza through the app:
 <br>Each pizza requires a sauce, a cheese or both
@@ -46,17 +44,20 @@ Possible pizzas spending all points: 57 C 8 / 1652411475
 Multiply that by 11 as there are 11 types of pizza
 1.8176526225 × 10^10
 ```
-No longer gazillions but still enough to eat ~620,000 different pizzas each day of your life and still not try them all.
-There are of course more as you do not HAVE to use the maximum amount of toppings available to you.
-I think that is enough estimation, let's actually work this out.
+#### No longer gazillions but still enough to eat ~620,000 different pizzas each day of your life and still not try them all. There are of course more as you do not HAVE to use the maximum amount of toppings available to you. I think that is enough estimation, let's actually work this out.
 ---
+The restriction of not being able to have a triple portion (E.g. Pepperoni and Extra Pepperoni) dramatically reduced the possible valid combinations!
+<br>
 The result of the code is: 
-<br>163560573 Pizzas // 163 million 560 thousand 573
+<br>**163560573 Pizzas // 163 million 560 thousand 573**
 <br>1.63560573 × 10^8
 <br>A lot smaller than the original estimate! About 10^8 times smaller in fact.
 <br>Of course this number will vary depending on what promotions are available and what each individual store offers,
 but I'm satisfied with this solution, to any Domino's workers reading feel free to fork and tweak the ingredients for your
 specific store!
+<br>
+<br>
+![Gazillions](img/gazillions.jpg) There are a lot of combinations, and this claim may be true across all the different Domino's markets, but for the specific store I used as an example with the restrictions imposed by the app, you're a few billion combinations short of this claim Domino's ^^
 <br>
 <br>
 -Tom
