@@ -49,4 +49,16 @@ Multiply that by 11 as there are 11 types of pizza
 No longer gazillions but still enough to eat ~620,000 different pizzas each day of your life and still not try them all.
 There are of course more as you do not HAVE to use the maximum amount of toppings available to you.
 I think that is enough estimation, let's actually work this out.
+---
+The result of the code is: 
+<br>163560573 Pizzas // 163 million 560 thousand 573
+<br>1.63560573 × 10^8
+<br>A lot smaller than the original estimate! About 10^8 times smaller in fact.
+<br>Of course this number will vary depending on what promotions are available and what each individual store offers,
+but I'm satisfied with this solution, to any Domino's workers reading feel free to fork and tweak the ingredients for your
+specific store!
+<br>
+<br>
+-Tom
+
 
